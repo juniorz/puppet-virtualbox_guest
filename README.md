@@ -21,3 +21,11 @@ You can also stick it to a specific version with:
       version => '4.2.10',
     }
 
+### Facts
+
+This module provides the following facts:
+
+`virtualbox_guest_additions` - the version of VirtualBox Guest Additions
+currently installed.
+
+`virtualbox_host_version` - the version of VirtualBox instaled in the Host.o
