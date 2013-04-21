@@ -14,6 +14,14 @@ class virtualbox::guest_additions(
     $file_name = "VBoxGuestAdditions_${install_version}.iso"
     $dest_file = "/tmp/${file_name}"
 
+    package { "gcc":
+      ensure => present,
+    }
+
+    package { "dkms":
+      ensure => present,
+    }
+
     file { '/root/install_guest_additions' :
       ensure => present,
       owner  => 'root',
@@ -25,7 +33,10 @@ class virtualbox::guest_additions(
     exec { 'install_guest_additions' :
       command  => "/bin/bash /root/install_guest_additions ${install_version}",
       user     => 'root',
-      require  => File['/root/install_guest_additions'],
+      require  => [
+        File['/root/install_guest_additions'],
+        Package['gcc', 'dkms'],
+      ],
     }
 
     package { "linux-headers-${::kernelrelease}":
