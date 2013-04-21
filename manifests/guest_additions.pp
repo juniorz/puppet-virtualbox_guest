@@ -25,7 +25,7 @@ class virtualbox::guest_additions(
     exec { 'install_guest_additions' :
       command  => "/bin/bash /root/install_guest_additions ${install_version}",
       user     => 'root',
-      requires => File['/root/install_guest_additions'],
+      require  => File['/root/install_guest_additions'],
     }
 
     package { "linux-headers-${::kernelrelease}":
