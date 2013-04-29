@@ -29,3 +29,9 @@ This module provides the following facts:
 currently installed.
 
 `virtualbox_host_version` - the version of VirtualBox instaled in the Host.o
+
+## Related projects
+
+* https://github.com/dotless-de/vagrant-vbguest  
+  Manages VirtualBox Guest Additions automatically for Vagrant boxes.
+
