@@ -24,6 +24,13 @@ if [ ! -e "$DESTFILE" ]; then
 fi
 
 mkdir -p $MOUNTPOINT
+which mountpoint > /dev/null
+if [ $? -eq 0 ]; then
+  mountpoint -q $MOUNTPOINT
+  if [ $? -eq 0 ]; then
+    sudo umount $MOUNTPOINT
+  fi
+fi
 sudo mount ${DESTFILE} -o loop $MOUNTPOINT
 
 sudo sh ${MOUNTPOINT}/VBoxLinuxAdditions.run --nox11
